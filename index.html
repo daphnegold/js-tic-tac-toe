@@ -8,14 +8,42 @@
 
   <body>
     <h1>Tic Tac Toe</h1>
-    <div id="tic-tac-toe"></div>
+    <div id="tic-tac-toe">
+      <table>
+        <tr>
+          <td id="r1c1">
+          </td>
+          <td id="r1c2">
+          </td>
+          <td id="three">
+          </td>
+        </tr>
+        <tr>
+          <td id="four">
+          </td>
+          <td id="five">
+          </td>
+          <td id="six">
+          </td>
+        </tr>
+        <tr>
+          <td id="seven">
+          </td>
+          <td id="eight">
+          </td>
+          <td id="nine">
+          </td>
+        </tr>
+      </table>
+    </div>
   </body>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
   <script src="tic-tac-toe.js"></script>
   <script type="text/javascript">
     $(document).on('ready', function() {
       console.log('create and begin the game here!');
+      tto = new TicTacToe();
+      tto.play()
     })
   </script>
 </html>
-

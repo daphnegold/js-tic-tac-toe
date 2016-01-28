@@ -1,3 +1,12 @@
 html {
-  
+
+}
+
+table, td {
+  border: 1px solid black;
+}
+
+td, img {
+  width: 200px;
+  height: 200px;
 }
