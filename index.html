@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <h1>Tic Tac Toe</h1>
+    <!-- <h1>Tic Tac Toe</h1> -->
     <div id="tic-tac-toe">
       <table>
         <tr>
@@ -37,17 +37,15 @@
         </tr>
       </table>
     </div>
-    <div id="winner">
-
-    </div>
+    <div id="overlay"></div>
   </body>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
   <script src="tic-tac-toe.js"></script>
   <script type="text/javascript">
     $(document).on('ready', function() {
       console.log('create and begin the game here!');
-      tto = new TicTacToe();
-      tto.play()
+      var tto = new TicTacToe();
+      tto.play();
     })
   </script>
 </html>
