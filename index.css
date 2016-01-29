@@ -1,9 +1,11 @@
 html {
-
+  font-family: 'Montserrat', sans-serif;
 }
 
 table, td {
   border: 1px solid black;
+  font-size: 160px;
+  text-align: center;
 }
 
 td, img {

@@ -8,7 +8,7 @@ Array.prototype.allSame = function() {
 };
 
 function TicTacToe() {
-  this.moves = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  this.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
   this.turn = 0;
 }
 
@@ -16,8 +16,8 @@ function TicTacToe() {
 
 TicTacToe.prototype = {
   winner: function(r, c, player) {
-    var row = this.moves[r];
-    var col = [this.moves[0][c], this.moves[1][c], this.moves[2][c]];
+    var row = this.board[r];
+    var col = [this.board[0][c], this.board[1][c], this.board[2][c]];
 
     // check row & column
     if (row.allSame() || col.allSame()) {
@@ -25,8 +25,8 @@ TicTacToe.prototype = {
     }
 
     if ((r + c) % 2 === 0) {
-      var diagOne = [this.moves[0][0], this.moves[1][1], this.moves[2][2]];
-      var diagTwo = [this.moves[2][0], this.moves[1][1], this.moves[0][2]];
+      var diagOne = [this.board[0][0], this.board[1][1], this.board[2][2]];
+      var diagTwo = [this.board[2][0], this.board[1][1], this.board[0][2]];
 
       // check diagonals
       if (diagOne.allSame() || diagTwo.allSame()) {
@@ -37,6 +37,24 @@ TicTacToe.prototype = {
 
   play: function() {
     var self = this;
+    $("td").mouseenter(function () {
+      var box = this.id;
+      if (!$("#" + box).hasClass("played")) {
+        if (self.turn % 2 === 0) {
+          $("#" + box).text("X");
+        } else {
+          $("#" + box).text("O");
+        }
+      }
+    });
+
+    $("td").mouseleave(function () {
+      var box = this.id;
+      if (!$("#" + box).hasClass("played")) {
+        $("#" + box).text("");
+      }
+    });
+
 
     $("td").one("click", function() {
       var box = this.id;
@@ -44,14 +62,17 @@ TicTacToe.prototype = {
 
       if (self.turn % 2 === 0) {
         $("#" + box).text("X");
-        self.moves[r][c] = "X";
+
+        self.board[r][c] = "X";
         self.winner(r, c, "X");
       } else {
         $("#" + box).text("O");
-        self.moves[r][c] = "O";
+
+        self.board[r][c] = "O";
         self.winner(r, c, "O");
       }
 
+      $("#" + box).addClass("played");
       self.turn++;
     });
   }
