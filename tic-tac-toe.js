@@ -16,7 +16,13 @@ TicTacToe.prototype = {
   reset: function() {
     this.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     this.turn = 0;
-    this.play();
+    this.game();
+  },
+
+  game: function() {
+    var board = this;
+    this.hoverEffect(board);
+    this.setPiece(board);
   },
 
   winner: function(r, c, player) {
@@ -46,7 +52,7 @@ TicTacToe.prototype = {
   },
 
   again: function() {
-    var self = this;
+    var board = this;
     $("table").addClass("again");
 
     $("#overlay").click(function() {
@@ -61,18 +67,17 @@ TicTacToe.prototype = {
         }
       }
 
-      self.reset();
+      board.reset();
     });
   },
 
-  play: function() {
-    var self = this;
+  hoverEffect: function(board) {
 
     $("td").off("mouseenter");
     $("td").mouseenter(function () {
       var box = this.id;
       if (!$("#" + box).hasClass("played")) {
-        if (self.turn % 2 === 0) {
+        if (board.turn % 2 === 0) {
           $("#" + box).text("X");
         } else {
           $("#" + box).text("O");
@@ -87,24 +92,27 @@ TicTacToe.prototype = {
         $("#" + box).text("");
       }
     });
+  },
+
+  setPiece: function(board) {
 
     $("td").off("click");
     $("td").one("click", function() {
       var box = this.id;
       var r = parseInt(box.match(/\d+/g)[0]), c = parseInt(box.match(/\d+/g)[1]);
 
-      if (self.turn % 2 === 0) {
+      if (board.turn % 2 === 0) {
         $("#" + box).text("X");
 
-        self.board[r][c] = "X"; self.winner(r, c, "X");
+        board.board[r][c] = "X"; board.winner(r, c, "X");
       } else {
         $("#" + box).text("O");
 
-        self.board[r][c] = "O"; self.winner(r, c, "O");
+        board.board[r][c] = "O"; board.winner(r, c, "O");
       }
 
       $("#" + box).addClass("played");
-      self.turn++;
+      board.turn++;
     });
   }
 };
