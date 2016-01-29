@@ -8,11 +8,17 @@ Array.prototype.allSame = function() {
 };
 
 function TicTacToe() {
-  this.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-  this.turn = 0;
+  this.reset();
 }
 
 TicTacToe.prototype = {
+
+  reset: function() {
+    this.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    this.turn = 0;
+    this.play();
+  },
+
   winner: function(r, c, player) {
     var row = this.board[r];
     var col = [this.board[0][c], this.board[1][c], this.board[2][c]];
@@ -55,9 +61,7 @@ TicTacToe.prototype = {
         }
       }
 
-      self.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-      self.turn = 0;
-      self.play();
+      self.reset();
     });
   },
 
