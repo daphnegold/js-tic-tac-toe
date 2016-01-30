@@ -14,6 +14,8 @@ function TicTacToe() {
 TicTacToe.prototype = {
 
   reset: function() {
+    $("#tic-tac-toe").empty();
+    this.makeBoard();
     this.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     this.turn = 0;
     this.game();
@@ -23,6 +25,21 @@ TicTacToe.prototype = {
     var board = this;
     this.hoverEffect(board);
     this.setPiece(board);
+  },
+
+  makeBoard: function() {
+    $("#tic-tac-toe").append("<table>");
+    for (var i = 0; i < 3; i++) {
+      $("table").append("<tr>");
+    }
+
+    var rows = $("table").children();
+    for (r = 0; r < 3; r++) {
+      for (c = 0; c < 3; c++) {
+        var data = $( "<td>" ).attr("id", "r" + r + "c" + c);
+        $(data).appendTo(rows[r]);
+      }
+    }
   },
 
   winner: function(r, c, player) {
@@ -60,8 +77,8 @@ TicTacToe.prototype = {
       $("#overlay").removeClass("winner");
       $("#overlay").empty();
 
-      for (r = 0; r < 3; r++) {
-        for (c = 0; c < 3; c++) {
+      for (var r = 0; r < 3; r++) {
+        for (var c = 0; c < 3; c++) {
           $("#r" + r + "c" + c).empty();
           $("#r" + r + "c" + c).removeClass();
         }
@@ -73,7 +90,6 @@ TicTacToe.prototype = {
 
   hoverEffect: function(board) {
 
-    $("td").off("mouseenter");
     $("td").mouseenter(function () {
       var box = this.id;
       if (!$("#" + box).hasClass("played")) {
@@ -85,7 +101,6 @@ TicTacToe.prototype = {
       }
     });
 
-    $("td").off("mouseleave");
     $("td").mouseleave(function () {
       var box = this.id;
       if (!$("#" + box).hasClass("played")) {
@@ -96,7 +111,6 @@ TicTacToe.prototype = {
 
   setPiece: function(board) {
 
-    $("td").off("click");
     $("td").one("click", function() {
       var box = this.id;
       var r = parseInt(box.match(/\d+/g)[0]), c = parseInt(box.match(/\d+/g)[1]);
