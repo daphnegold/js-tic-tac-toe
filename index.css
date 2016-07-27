@@ -1,0 +1,44 @@
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+#tic-tac-toe {
+  padding-top: 150px;
+}
+
+td {
+  border: 5px solid black;
+}
+
+table, td {
+  border: collapse;
+  font-size: 160px;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+}
+
+td, img {
+  width: 200px;
+  height: 200px;
+}
+
+.winner {
+  position: absolute;
+  padding-top: 400px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+
+.again {
+  background-color: rgba(0, 0, 0, 0.75);
+}
